@@ -86,19 +86,35 @@ def fallback_response() -> dict:
 @app.post("/api/recommend")
 def recommend(payload: RecommendRequest):
   api_key = os.getenv("GEMINI_API_KEY")
-  model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-flash")
+  model_name = os.getenv("GEMINI_MODEL", "gemini-1.5-flash-latest")
   if not api_key or not genai:
     return fallback_response()
 
   genai.configure(api_key=api_key)
-  model = genai.GenerativeModel(model_name)
   prompt = build_prompt(payload)
-  response = model.generate_content(
-    prompt,
-    generation_config={"response_mime_type": "application/json"},
-  )
-  text = response.text or ""
-  try:
-    return json.loads(text)
-  except Exception:
-    return fallback_response()
+
+  # Try a few model aliases in case a specific version is unavailable.
+  candidates = [
+    model_name,
+    "gemini-1.5-flash-latest",
+    "gemini-1.5-flash-001",
+    "gemini-1.5-pro-latest",
+  ]
+
+  last_error = None
+  for name in candidates:
+    try:
+      model = genai.GenerativeModel(name)
+      response = model.generate_content(
+        prompt,
+        generation_config={"response_mime_type": "application/json"},
+      )
+      text = response.text or ""
+      return json.loads(text)
+    except Exception as exc:
+      last_error = exc
+      continue
+
+  # If all attempts fail, fall back to a safe response.
+  _ = last_error
+  return fallback_response()
