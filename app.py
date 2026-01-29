@@ -93,7 +93,10 @@ def recommend(payload: RecommendRequest):
   genai.configure(api_key=api_key)
   model = genai.GenerativeModel(model_name)
   prompt = build_prompt(payload)
-  response = model.generate_content(prompt)
+  response = model.generate_content(
+    prompt,
+    generation_config={"response_mime_type": "application/json"},
+  )
   text = response.text or ""
   try:
     return json.loads(text)
