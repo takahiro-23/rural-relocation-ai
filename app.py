@@ -36,7 +36,7 @@ app.add_middleware(
 )
 
 # Serve the frontend from the same origin.
-app.mount("/assets", StaticFiles(directory=".", html=False), name="assets")
+app.mount("/static", StaticFiles(directory="static", html=False), name="static")
 
 
 @app.get("/")
