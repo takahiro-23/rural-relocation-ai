@@ -1,6 +1,7 @@
 import json
 import os
 from typing import List, Optional
+import logging
 
 from dotenv import load_dotenv
 from fastapi import FastAPI
@@ -27,6 +28,8 @@ class RecommendRequest(BaseModel):
 
 
 app = FastAPI()
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("recommend")
 app.add_middleware(
   CORSMiddleware,
   allow_origins=["*"],
@@ -110,8 +113,10 @@ def recommend(payload: RecommendRequest):
         generation_config={"response_mime_type": "application/json"},
       )
       text = response.text or ""
+      logger.info("Gemini model=%s raw=%s", name, text)
       return json.loads(text)
     except Exception as exc:
+      logger.info("Gemini error model=%s err=%s", name, exc)
       last_error = exc
       continue
 
