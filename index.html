@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>里のくらし案内 — 家族のための移住提案</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="paper-texture" aria-hidden="true"></div>
+    <header class="site-header">
+      <div class="logo">
+        <span>里のくらし案内</span>
+        <small>移住コンシェルジュ</small>
+      </div>
+      <nav class="site-nav">
+        <a href="#services">自治体サービス</a>
+        <a href="#stories">移住ストーリー</a>
+        <a href="#ai">AI提案</a>
+        <a href="#contact">相談する</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="top">
+        <div class="hero__content">
+          <p class="eyebrow">家族の未来にやさしい選択</p>
+          <h1>
+            田舎暮らしを<br />
+            もっと安心に、もっと楽しく
+          </h1>
+          <p class="lead">
+            子育て・医療・教育など、家族に必要な自治体サービスを中心に、あなたに合う移住先を一緒に探します。
+          </p>
+          <div class="hero__actions">
+            <a class="btn primary" href="#ai">AIで移住先を探す</a>
+            <a class="btn ghost" href="#services">サービスを見る</a>
+          </div>
+          <div class="hero__tags">
+            <span>子育て支援</span>
+            <span>医療アクセス</span>
+            <span>教育サポート</span>
+            <span>仕事・住まい</span>
+          </div>
+        </div>
+        <div class="hero__visual">
+          <div class="hill"></div>
+          <div class="floating-card">
+            <h3>今日のおすすめ</h3>
+            <p>住まい補助と保育支援が充実した地域をピックアップ。</p>
+            <span>AI提案で無料チェック</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section__heading">
+          <p class="eyebrow">Services</p>
+          <h2>家族向けの自治体サービスを見える化</h2>
+          <p>気になる支援制度をまとめて比較し、移住後の生活を具体的にイメージできます。</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>子育て支援</h3>
+            <p>保育料補助、育児用品支援、子育て相談窓口などをまとめて確認。</p>
+          </article>
+          <article class="feature-card">
+            <h3>医療・教育</h3>
+            <p>医療費助成や通学支援、学校の規模や特色をわかりやすく整理。</p>
+          </article>
+          <article class="feature-card">
+            <h3>住まい・仕事</h3>
+            <p>家賃補助、空き家バンク、リモート対応求人や就業支援制度を紹介。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section stories" id="stories">
+        <div class="section__heading">
+          <p class="eyebrow">Stories</p>
+          <h2>移住ストーリー</h2>
+          <p>先輩家族の体験談から「実際どうだった？」をリアルに知る。</p>
+        </div>
+        <div class="story-grid">
+          <article class="story-card">
+            <h3>東京→長野</h3>
+            <p>保育園探しと医療アクセスが不安でしたが、地域の子育て支援が想像以上でした。</p>
+            <span>4人家族 / 在宅ワーク</span>
+          </article>
+          <article class="story-card">
+            <h3>大阪→高知</h3>
+            <p>自然の中で子どもがのびのび。教育支援も手厚く、相談窓口が心強いです。</p>
+            <span>3人家族 / 教員</span>
+          </article>
+          <article class="story-card">
+            <h3>名古屋→秋田</h3>
+            <p>家賃補助と就業支援で移住のハードルが一気に下がりました。</p>
+            <span>2人家族 / Uターン</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section ai" id="ai">
+        <div class="section__heading">
+          <p class="eyebrow">AI Matching</p>
+          <h2>AIがあなたに合う移住先を提案</h2>
+          <p>家族構成や重視する支援をもとに、相性の良い地域を3つ提案します。</p>
+        </div>
+        <div class="ai-grid">
+          <form class="ai-form" id="ai-form">
+            <label>
+              家族構成
+              <select name="family">
+                <option value="couple">夫婦のみ</option>
+                <option value="kids-1">子ども1人</option>
+                <option value="kids-2">子ども2人以上</option>
+              </select>
+            </label>
+            <label>
+              住まい予算（月）
+              <select name="budget">
+                <option value="low">〜6万円</option>
+                <option value="mid">6〜9万円</option>
+                <option value="high">9万円以上</option>
+              </select>
+            </label>
+            <label>
+              仕事の希望
+              <select name="work">
+                <option value="remote">リモート中心</option>
+                <option value="local">現地就業</option>
+                <option value="flex">どちらでも</option>
+              </select>
+            </label>
+            <fieldset>
+              <legend>重視する自治体サービス（複数選択）</legend>
+              <div class="checkbox-grid">
+                <label><input type="checkbox" name="service" value="childcare" checked /> 子育て</label>
+                <label><input type="checkbox" name="service" value="medical" checked /> 医療</label>
+                <label><input type="checkbox" name="service" value="education" checked /> 教育</label>
+                <label><input type="checkbox" name="service" value="grant" checked /> 支援金</label>
+                <label><input type="checkbox" name="service" value="rent" checked /> 家賃</label>
+                <label><input type="checkbox" name="service" value="jobs" checked /> 仕事</label>
+              </div>
+            </fieldset>
+            <label>
+              ひとこと（任意）
+              <textarea name="note" rows="3" placeholder="例：自然が多い場所、雪は少なめが希望"></textarea>
+            </label>
+            <button class="btn primary" type="submit">おすすめを提案</button>
+            <p class="ai-note">
+              ※AI提案はサーバー側でGemini APIを呼び出します。今はサンプル表示です。
+            </p>
+          </form>
+
+          <div class="ai-results" id="ai-results">
+            <div class="result-card">
+              <div class="result-head">
+                <h3>信州あさひ市</h3>
+                <span class="score">マッチ度 92</span>
+              </div>
+              <p>保育料補助と医療費助成が充実。家賃支援と移住支援金も手厚い。</p>
+              <div class="badge-row">
+                <span>子育て</span><span>医療</span><span>支援金</span>
+              </div>
+            </div>
+            <div class="result-card">
+              <div class="result-head">
+                <h3>みなみ高原町</h3>
+                <span class="score">マッチ度 88</span>
+              </div>
+              <p>教育支援と学童が豊富。空き家バンクと家賃補助が利用しやすい。</p>
+              <div class="badge-row">
+                <span>教育</span><span>家賃</span><span>子育て</span>
+              </div>
+            </div>
+            <div class="result-card">
+              <div class="result-head">
+                <h3>ひだまり湖市</h3>
+                <span class="score">マッチ度 84</span>
+              </div>
+              <p>リモート対応求人が多く、就業支援が豊富。医療アクセスも良好。</p>
+              <div class="badge-row">
+                <span>仕事</span><span>医療</span><span>教育</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta" id="contact">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>家族の移住、まずは相談から</h2>
+          <p>オンライン相談・資料請求に対応。自治体の最新情報もご案内します。</p>
+        </div>
+        <a class="btn primary" href="mailto:hello@satocl.jp">無料で相談する</a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 里のくらし案内</p>
+      <div class="footer-links">
+        <a href="#services">自治体サービス</a>
+        <a href="#ai">AI提案</a>
+        <a href="#contact">相談</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
