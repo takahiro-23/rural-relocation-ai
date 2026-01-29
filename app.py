@@ -102,6 +102,9 @@ def recommend(payload: RecommendRequest):
     "gemini-1.5-flash-latest",
     "gemini-1.5-flash-001",
     "gemini-1.5-pro-latest",
+    "gemini-pro",
+    "gemini-1.0-pro",
+    "gemini-1.0-pro-001",
   ]
 
   last_error = None
@@ -119,6 +122,28 @@ def recommend(payload: RecommendRequest):
       logger.info("Gemini error model=%s err=%s", name, exc)
       last_error = exc
       continue
+
+  # Try dynamically listing available models as a last resort.
+  try:
+    for m in genai.list_models():
+      if "generateContent" not in getattr(m, "supported_generation_methods", []):
+        continue
+      name = m.name.replace("models/", "")
+      try:
+        model = genai.GenerativeModel(name)
+        response = model.generate_content(
+          prompt,
+          generation_config={"response_mime_type": "application/json"},
+        )
+        text = response.text or ""
+        logger.info("Gemini model=%s raw=%s", name, text)
+        return json.loads(text)
+      except Exception as exc:
+        logger.info("Gemini error model=%s err=%s", name, exc)
+        last_error = exc
+        continue
+  except Exception as exc:
+    last_error = exc
 
   # If all attempts fail, fall back to a safe response.
   _ = last_error
